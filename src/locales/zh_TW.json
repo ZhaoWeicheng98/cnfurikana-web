@@ -17,5 +17,6 @@
     "click":"點擊上載",
     "tip":"只能上載UTF-8編碼的txt檔案"
   },
-  "clear":"清空"
+  "clear":"清空",
+  "playAudio":"朗讀"
 }

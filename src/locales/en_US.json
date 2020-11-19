@@ -17,5 +17,6 @@
     "click":" click to upload",
     "tip":"Only UTF-8 encoded txt files can be uploaded."
   },
-  "clear":"CLEAR"
+  "clear":"CLEAR",
+  "playAudio":"READOUT"
 }

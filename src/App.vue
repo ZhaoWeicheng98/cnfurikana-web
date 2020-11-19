@@ -82,6 +82,9 @@
         <el-button type="danger" round v-on:click="clear">{{
           $t("clear")
         }}</el-button>
+        <el-button type="primary" round v-on:click="playAudio">{{
+          $t("playAudio")
+        }}</el-button>
         <furikana-display :content="content" :displayMode="selectedMode" />
       </el-main>
     </el-container>
@@ -90,6 +93,7 @@
 
 <script>
 import FurikanaDisplay from "./components/FurikanaDisplay.vue";
+import Speech from "speak-tts";
 
 export default {
   name: "App",
@@ -121,7 +125,11 @@ export default {
       ],
       selectedMode: 0,
       selectedLang: "zh_CN",
+      speech: null,
     };
+  },
+  mounted() {
+    this.speechInit();
   },
   beforeCreate() {
     this.$i18n.locale = localStorage.getItem("lang") || "zh_CN";
@@ -144,6 +152,11 @@ export default {
     };
   },
   methods: {
+    speechInit() {
+      this.speech = new Speech();
+      this.speech.setLanguage("zh-CN");
+      this.speech.init().then(() => {});
+    },
     beforeUpload(file) {
       this.fileList = [file];
       console.log("选择了文件beforeUpload");
@@ -170,6 +183,11 @@ export default {
     changeLang() {
       this.$i18n.locale = this.selectedLang;
       localStorage.setItem("lang", this.selectedLang);
+    },
+    playAudio() {
+      this.speech.speak({ text: this.content }).then(() => {
+        console.log("读取成功");
+      });
     },
   },
   computed: {

@@ -17,5 +17,6 @@
     "click":"点击上传",
     "tip":"只能上传UTF-8编码的txt文件"
   },
-  "clear":"清空"
+  "clear":"清空",
+  "playAudio":"朗读"
 }
