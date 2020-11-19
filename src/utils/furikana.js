@@ -19,11 +19,11 @@ export function ToParsedContent(text) {
     "\u3000↗\u3000",
     "\u3000↘↗\u3000",
     "\u3000↘\u3000",
-    "\u3000·\u3000"
+    "\u3000·\u3000",
   ];
   let hanziContent = getChinese(text);
   let pinyinContent = pinyin(hanziContent, {
-    segment: true
+    segment: true,
   });
   let retContent = [];
   for (let i = 0; i < hanziContent.length; i++) {
@@ -37,7 +37,7 @@ export function ToParsedContent(text) {
       untonePinyin: untonePinyin,
       tone: tone,
       arrowTone: arrowTones[tone],
-      funikana: funikanaData[untonePinyin]
+      funikana: funikanaData[untonePinyin],
     });
   }
   return retContent;
@@ -56,9 +56,9 @@ export function ToHtmlContent(parsedContent, displayMode = 0) {
     switch (displayMode) {
       case 0:
         content =
-          "<ruby>" +
+          "<ruby>&nbsp" +
           content +
-          "<rp>(</rp><rt>" +
+          "&nbsp<rp>(</rp><rt>" +
           parsedHanzi.funikana +
           "</rt><rp>)</rp></ruby><rp>(</rp><rt>" +
           parsedHanzi.arrowTone +
@@ -66,19 +66,25 @@ export function ToHtmlContent(parsedContent, displayMode = 0) {
         break;
       case 1:
         content =
-          content + "<rp>(</rp><rt>" + parsedHanzi.funikana + "</rt><rp>)</rp>";
+          "&nbsp" +
+          content +
+          "&nbsp<rp>(</rp><rt>" +
+          parsedHanzi.funikana +
+          "</rt><rp>)</rp>";
         break;
       case 2:
         content =
+          "&nbsp" +
           content +
-          "<rp>(</rp><rt>" +
+          "&nbsp<rp>(</rp><rt>" +
           parsedHanzi.tonePinyin +
           "</rt><rp>)</rp>";
         break;
       case 3:
         content =
+          "&nbsp" +
           content +
-          "<rp>(</rp><rt>" +
+          "&nbsp<rp>(</rp><rt>" +
           parsedHanzi.untonePinyin +
           "</rt><rp>)</rp>";
         break;
@@ -88,5 +94,5 @@ export function ToHtmlContent(parsedContent, displayMode = 0) {
     }
     retContents.push(content);
   }
-  return "<ruby>" + retContents.join("&nbsp") + "</ruby>";
+  return "<ruby>" + retContents.join("") + "</ruby>";
 }
