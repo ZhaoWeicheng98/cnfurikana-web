@@ -19,6 +19,8 @@ vue.js, element-ui, pinyin.js, cnchar.js, speak-tts.js
 + TTS支持，可以直接朗读输入的文本的中文发音。
 + 多语言支持，支持简体中文、繁体中文、英语和日语。
 
+以后再也不用担心不会念舰长DD的名字了
+
 ## Pages
 
 在Github Pages和Gitee Pages上均有托管。
