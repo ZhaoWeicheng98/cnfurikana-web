@@ -1,12 +1,38 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header>CN Furikana Web</el-header>
+      <el-header>
+        <el-col :span="16">
+          {{ $t("title") }}
+        </el-col>
+        <el-col :span="7">
+          <el-select
+            v-model="selectedLang"
+            placeholder="语言/語言/Language/言語を選択"
+            @change="changeLang"
+          >
+            <el-option
+              v-for="item in langs"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </el-col>
+        <el-col :span="1">
+          <a
+            href="https://github.com/Zhaoweicheng98/cnfurikana-web"
+            target="_blank"
+            ><i class="el-icon-info"></i
+          ></a>
+        </el-col>
+      </el-header>
       <el-main>
         <el-row :gutter="10">
-          <el-col :span="4">选择标注方式 </el-col>
-          <el-col :span="8">
-            <el-select v-model="selectedMode" placeholder="请选择">
+          <el-col :span="6">{{ $t("modeSelector.label") }}</el-col>
+          <el-col :span="12">
+            <el-select v-model="selectedMode">
               <el-option
                 v-for="item in displayModes"
                 :key="item.value"
@@ -18,15 +44,19 @@
           </el-col>
         </el-row>
         <el-row :gutter="10">
-          <el-col :span="4">请输入要标注的内容</el-col>
-          <el-col :span="8">
-            <el-input placeholder="请输入内容" v-model="inputContent" clearable>
+          <el-col :span="6">{{ $t("input.label") }}</el-col>
+          <el-col :span="12">
+            <el-input
+              :placeholder="$t('input.placeholder')"
+              v-model="inputContent"
+              clearable
+            >
             </el-input>
           </el-col>
         </el-row>
         <el-row :gutter="10">
-          <el-col :span="4">或者</el-col>
-          <el-col :span="8">
+          <el-col :span="6">{{ $t("fileUploader.label") }}</el-col>
+          <el-col :span="12">
             <el-upload
               class="upload-demo"
               action="/"
@@ -40,13 +70,18 @@
             >
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">
-                将txt文件拖到此处，或<em>点击上传</em>
+                {{ $t("fileUploader.text")
+                }}<em>{{ $t("fileUploader.click") }}</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传txt文件</div>
+              <div class="el-upload__tip" slot="tip">
+                {{ $t("fileUploader.tip") }}
+              </div>
             </el-upload>
           </el-col>
         </el-row>
-        <el-button type="danger" round v-on:click="clear">清空</el-button>
+        <el-button type="danger" round v-on:click="clear">{{
+          $t("clear")
+        }}</el-button>
         <furikana-display :content="content" :displayMode="selectedMode" />
       </el-main>
     </el-container>
@@ -66,28 +101,30 @@ export default {
       inputContent: "",
       fileContent: "",
       fileList: [],
-      displayModes: [
+      langs: [
         {
-          value: 0,
-          label: "标注片假名和箭头音调",
+          value: "zh_CN",
+          label: "简体中文",
         },
         {
-          value: 1,
-          label: "标注片假名",
+          value: "zh_TW",
+          label: "繁體中文",
         },
         {
-          value: 2,
-          label: "标注带音调拼音",
+          value: "en_US",
+          label: "English",
         },
         {
-          value: 3,
-          label: "标注无音调拼音",
+          value: "ja_JP",
+          label: "日本語",
         },
       ],
       selectedMode: 0,
+      selectedLang: "zh_CN",
     };
   },
   beforeCreate() {
+    this.$i18n.locale = localStorage.getItem("lang") || "zh_CN";
     // 读取文件
     FileReader.prototype.reading = function({ encode }) {
       let bytes = new Uint8Array(this.result); //无符号整型数组
@@ -129,10 +166,14 @@ export default {
       console.log("cleared");
       this.fileContent = "";
       this.inputContent = "";
-    }
+    },
+    changeLang() {
+      this.$i18n.locale = this.selectedLang;
+      localStorage.setItem("lang", this.selectedLang);
+    },
   },
   computed: {
-    content: function () {
+    content: function() {
       if (this.fileContent != null && this.fileContent != "") {
         return this.fileContent;
       }
@@ -140,6 +181,26 @@ export default {
         return this.inputContent;
       }
       return "";
+    },
+    displayModes: function() {
+      return [
+        {
+          value: 0,
+          label: this.$t("modeSelector.choiceLabel0"),
+        },
+        {
+          value: 1,
+          label: this.$t("modeSelector.choiceLabel1"),
+        },
+        {
+          value: 2,
+          label: this.$t("modeSelector.choiceLabel2"),
+        },
+        {
+          value: 3,
+          label: this.$t("modeSelector.choiceLabel3"),
+        },
+      ];
     },
   },
 };

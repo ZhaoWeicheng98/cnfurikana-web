@@ -1,0 +1,21 @@
+{
+  "title": "漢字表音転写ツール",
+  "modeSelector": {
+    "label": "モード選択",
+    "choiceLabel0": "振り仮名 & 声調",
+    "choiceLabel1": "振り仮名",
+    "choiceLabel2": "トーンピニン",
+    "choiceLabel3": "ピンイン"
+  },
+  "input":{
+    "label":"マークするテキストを入力してくださ",
+    "placeholder":"ここにテキストを入力してください"
+  },
+  "fileUploader":{
+    "label":"または",
+    "text":"txtファイルをここにドラッグします、",
+    "click":"アップロード",
+    "tip":"UTF-8でエンコードされたtxtファイルのみをアップロードする"
+  },
+  "clear":"空の"
+}

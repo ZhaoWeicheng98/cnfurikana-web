@@ -14,16 +14,16 @@ function getChinese(strValue) {
 
 export function ToParsedContent(text) {
   const arrowTones = [
-    "\u3000\u3000",
-    "→\u3000",
-    "↗\u3000",
-    "↘↗",
-    "↘\u3000",
-    "·\u3000",
+    "\u3000\u3000\u3000",
+    "\u3000→\u3000",
+    "\u3000↗\u3000",
+    "\u3000↘↗\u3000",
+    "\u3000↘\u3000",
+    "\u3000·\u3000"
   ];
   let hanziContent = getChinese(text);
   let pinyinContent = pinyin(hanziContent, {
-    segment: true,
+    segment: true
   });
   let retContent = [];
   for (let i = 0; i < hanziContent.length; i++) {
@@ -37,7 +37,7 @@ export function ToParsedContent(text) {
       untonePinyin: untonePinyin,
       tone: tone,
       arrowTone: arrowTones[tone],
-      funikana: funikanaData[untonePinyin],
+      funikana: funikanaData[untonePinyin]
     });
   }
   return retContent;
@@ -88,5 +88,5 @@ export function ToHtmlContent(parsedContent, displayMode = 0) {
     }
     retContents.push(content);
   }
-  return "<ruby>" + retContents.join("") + "</ruby>";
+  return "<ruby>" + retContents.join("&nbsp") + "</ruby>";
 }

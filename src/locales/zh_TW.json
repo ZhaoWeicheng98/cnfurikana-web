@@ -1,0 +1,21 @@
+{
+  "title": "漢字振假名注音工具",
+  "modeSelector": {
+    "label": "請選擇標注模式",
+    "choiceLabel0": "標注振假名和箭頭音調",
+    "choiceLabel1": "標注振假名",
+    "choiceLabel2": "標注帶音調拼音",
+    "choiceLabel3": "標注無音調拼音"
+  },
+  "input":{
+    "label":"請鍵入要標注的内容",
+    "placeholder":"請鍵入内容"
+  },
+  "fileUploader":{
+    "label":"或者",
+    "text":"將txt檔案拖拽到這裏，或",
+    "click":"點擊上載",
+    "tip":"只能上載UTF-8編碼的txt檔案"
+  },
+  "clear":"清空"
+}

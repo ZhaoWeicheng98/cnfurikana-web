@@ -1,0 +1,21 @@
+{
+  "title": "Kanji-Furikana Phonetic Tool",
+  "modeSelector": {
+    "label": "Select phonetic mode",
+    "choiceLabel0": "Furikana & Tone",
+    "choiceLabel1": "Furikana only",
+    "choiceLabel2": "Pinyin (with tone)",
+    "choiceLabel3": "Pinyin (without tone)"
+  },
+  "input":{
+    "label":"Please enter the text to be marked",
+    "placeholder":"Input text here"
+  },
+  "fileUploader":{
+    "label":"Or",
+    "text":"Drop txt file here，or",
+    "click":" click to upload",
+    "tip":"Only UTF-8 encoded txt files can be uploaded."
+  },
+  "clear":"CLEAR"
+}
