@@ -124,7 +124,7 @@ export default {
         },
       ],
       selectedMode: 0,
-      selectedLang: "zh_CN",
+      selectedLang: this.$i18n.locale,
       speech: null,
     };
   },
