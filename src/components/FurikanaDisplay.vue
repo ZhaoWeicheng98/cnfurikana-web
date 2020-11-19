@@ -25,6 +25,7 @@ export default {
 <style scoped>
 p {
   font-size: 48px;
+  text-align: center;
 }
 
 ruby {

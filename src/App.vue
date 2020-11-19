@@ -132,11 +132,11 @@ export default {
     }
   },
   computed: {
-    content() {
-      if (this.fileContent != null && this.fileConten != "") {
+    content: function () {
+      if (this.fileContent != null && this.fileContent != "") {
         return this.fileContent;
       }
-      if (this.inputContent != null && this.inputConten != "") {
+      if (this.inputContent != null && this.inputContent != "") {
         return this.inputContent;
       }
       return "";
