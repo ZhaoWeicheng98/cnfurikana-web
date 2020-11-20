@@ -98,7 +98,7 @@ import Speech from "speak-tts";
 export default {
   name: "App",
   components: {
-    FurikanaDisplay,
+    FurikanaDisplay
   },
   data() {
     return {
@@ -108,24 +108,24 @@ export default {
       langs: [
         {
           value: "zh_CN",
-          label: "简体中文",
+          label: "简体中文"
         },
         {
           value: "zh_TW",
-          label: "繁體中文",
+          label: "繁體中文"
         },
         {
           value: "en_US",
-          label: "English",
+          label: "English"
         },
         {
           value: "ja_JP",
-          label: "日本語",
-        },
+          label: "日本語"
+        }
       ],
       selectedMode: 0,
       selectedLang: this.$i18n.locale,
-      speech: null,
+      speech: null
     };
   },
   mounted() {
@@ -188,7 +188,7 @@ export default {
       this.speech.speak({ text: this.content }).then(() => {
         console.log("读取成功");
       });
-    },
+    }
   },
   computed: {
     content: function() {
@@ -204,23 +204,23 @@ export default {
       return [
         {
           value: 0,
-          label: this.$t("modeSelector.choiceLabel0"),
+          label: this.$t("modeSelector.choiceLabel0")
         },
         {
           value: 1,
-          label: this.$t("modeSelector.choiceLabel1"),
+          label: this.$t("modeSelector.choiceLabel1")
         },
         {
           value: 2,
-          label: this.$t("modeSelector.choiceLabel2"),
+          label: this.$t("modeSelector.choiceLabel2")
         },
         {
           value: 3,
-          label: this.$t("modeSelector.choiceLabel3"),
-        },
+          label: this.$t("modeSelector.choiceLabel3")
+        }
       ];
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -273,10 +273,8 @@ body > .el-container {
 
 .el-row {
   margin-bottom: 20px;
-  &:last-child {
-    margin-bottom: 0;
-  }
 }
+
 .el-col {
   border-radius: 4px;
 }

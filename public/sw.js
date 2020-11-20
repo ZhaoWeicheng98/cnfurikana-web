@@ -4,7 +4,7 @@ var appShellFiles = [
   "img/icons/144.png",
   "img/icons/192.png",
   "img/icons/256.png",
-  "img/icons/512.png",
+  "img/icons/512.png"
 ];
 var contentToCache = appShellFiles;
 // Installing Service Worker

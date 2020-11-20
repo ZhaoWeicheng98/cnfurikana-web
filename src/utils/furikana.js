@@ -19,11 +19,11 @@ export function ToParsedContent(text) {
     "\u3000↗\u3000",
     "\u3000↘↗\u3000",
     "\u3000↘\u3000",
-    "\u3000·\u3000",
+    "\u3000·\u3000"
   ];
   let hanziContent = getChinese(text);
   let pinyinContent = pinyin(hanziContent, {
-    segment: true,
+    segment: true
   });
   let retContent = [];
   for (let i = 0; i < hanziContent.length; i++) {
@@ -37,7 +37,7 @@ export function ToParsedContent(text) {
       untonePinyin: untonePinyin,
       tone: tone,
       arrowTone: arrowTones[tone],
-      funikana: funikanaData[untonePinyin],
+      funikana: funikanaData[untonePinyin]
     });
   }
   return retContent;
