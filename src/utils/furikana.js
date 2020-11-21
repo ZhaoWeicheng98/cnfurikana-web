@@ -31,7 +31,6 @@ export function ToParsedContent(text) {
     segment: true,
   });
   let retContent = [];
-  console.log(pinyinContent);
   for (let i = 0, j = 0; i < pinyinContent.length; i++) {
     let tonePinyin = pinyinContent[i][0];
     if (text[j] != tonePinyin[0]) {
