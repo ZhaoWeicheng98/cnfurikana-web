@@ -33,7 +33,7 @@ vue.js, element-ui, pinyin.js, cnchar.js, speak-tts.js
 
 ## License
 
-
+MIT
 
 ## For Developer
 
