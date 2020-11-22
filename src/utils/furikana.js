@@ -24,14 +24,7 @@ export function ToParsedContent(texts) {
       .filter(
         (v) => v !== "\n" && v !== "\r\n" && v !== "" && v !== "undefined"
       ) || [];
-  const arrowTones = [
-    "&nbsp;&nbsp;&nbsp;",
-    "&nbsp;→&nbsp;",
-    "&nbsp;↗&nbsp;",
-    "&nbsp;↘↗&nbsp;",
-    "&nbsp;↘&nbsp;",
-    "&nbsp;·&nbsp;",
-  ];
+  const arrowTones = ["&nbsp;", "→", "↗", "↘↗", "↘", "·"];
   // let hanziContent = getChinese(text);
   console.log(texts);
   let retContents = [];
@@ -95,35 +88,35 @@ export function ToHtmlContent(parsedContents, displayMode = 0) {
           content =
             "<ruby>&nbsp;" +
             content +
-            "&nbsp;<rp>(</rp><rt>" +
+            "&nbsp;<rp>(</rp><rt>&nbsp;" +
             parsedHanzi.funikana +
-            "</rt><rp>)</rp></ruby><rp>(</rp><rt>" +
+            "&nbsp;</rt><rp>)</rp></ruby><rp>(</rp><rt>&nbsp;" +
             parsedHanzi.arrowTone +
-            "</rt><rp>)</rp>";
+            "&nbsp;</rt><rp>)</rp>";
           break;
         case 1:
           content =
             "&nbsp;" +
             content +
-            "&nbsp;<rp>(</rp><rt>" +
+            "&nbsp;<rp>(</rp><rt>&nbsp;" +
             parsedHanzi.funikana +
-            "</rt><rp>)</rp>";
+            "&nbsp;</rt><rp>)</rp>";
           break;
         case 2:
           content =
             "&nbsp;" +
             content +
-            "&nbsp;<rp>(</rp><rt>" +
+            "&nbsp;<rp>(</rp><rt>&nbsp;" +
             parsedHanzi.tonePinyin +
-            "</rt><rp>)</rp>";
+            "&nbsp;</rt><rp>)</rp>";
           break;
         case 3:
           content =
             "&nbsp;" +
             content +
-            "&nbsp;<rp>(</rp><rt>" +
+            "&nbsp;<rp>(</rp><rt>&nbsp;" +
             parsedHanzi.untonePinyin +
-            "</rt><rp>)</rp>";
+            "&nbsp;</rt><rp>)</rp>";
           break;
         default:
           console.log("mode error!");

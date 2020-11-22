@@ -64,7 +64,7 @@
               accept=".txt"
               :before-upload="beforeUpload"
               :disabled="this.fileList.length !== 0"
-              :default-file-list="this.fileList"
+              :file-list="this.fileList"
               drag
               multiple
             >
@@ -179,6 +179,7 @@ export default {
       console.log("cleared");
       this.fileContent = "";
       this.inputContent = "";
+      this.fileList = [];
     },
     changeLang() {
       this.$i18n.locale = this.selectedLang;
