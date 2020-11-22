@@ -17,7 +17,13 @@ let funikanaData = require("./table.json");
 
 //   return uni > 40869 || uni < 19968;
 // }
-export function ToParsedContent(text) {
+export function ToParsedContent(texts) {
+  texts =
+    texts
+      .split(/(\n|\r\n)/g)
+      .filter(
+        (v) => v !== "\n" && v !== "\r\n" && v !== "" && v !== "undefined"
+      ) || [];
   const arrowTones = [
     "&nbsp;&nbsp;&nbsp;",
     "&nbsp;→&nbsp;",
@@ -27,93 +33,105 @@ export function ToParsedContent(text) {
     "&nbsp;·&nbsp;",
   ];
   // let hanziContent = getChinese(text);
-  let pinyinContent = pinyin(text, {
-    segment: true,
-  });
-  let retContent = [];
-  for (let i = 0, j = 0; i < pinyinContent.length; i++) {
-    let tonePinyin = pinyinContent[i][0];
-    if (text[j] != tonePinyin[0]) {
-      let spellInfo = cnchar.spellInfo(tonePinyin);
-      let untonePinyin = spellInfo.spell;
-      let tone = spellInfo.tone;
-      retContent.push({
-        hanzi: text[j],
-        isHanzi: true,
-        tonePinyin: tonePinyin,
-        untonePinyin: untonePinyin,
-        tone: tone,
-        arrowTone: arrowTones[tone],
-        funikana: funikanaData[untonePinyin],
-      });
-      j++;
-    } else {
-      let space = "&nbsp;".repeat(tonePinyin.length + 1);
-      retContent.push({
-        hanzi: tonePinyin,
-        isHanzi: false,
-        tonePinyin: space,
-        untonePinyin: space,
-        tone: 0,
-        arrowTone: arrowTones[0],
-        funikana: space,
-      });
-      j += tonePinyin.length;
+  console.log(texts);
+  let retContents = [];
+  for (let t = 0; t < texts.length; t++) {
+    let text = texts[t];
+    let pinyinContent = pinyin(text, {
+      segment: true,
+    });
+    let retContent = [];
+    for (let i = 0, j = 0; i < pinyinContent.length; i++) {
+      let tonePinyin = pinyinContent[i][0];
+      if (text[j] != tonePinyin[0]) {
+        let spellInfo = cnchar.spellInfo(tonePinyin);
+        let untonePinyin = spellInfo.spell;
+        let tone = spellInfo.tone;
+        retContent.push({
+          hanzi: text[j],
+          isHanzi: true,
+          tonePinyin: tonePinyin,
+          untonePinyin: untonePinyin,
+          tone: tone,
+          arrowTone: arrowTones[tone],
+          funikana: funikanaData[untonePinyin],
+        });
+        j++;
+      } else {
+        let space = "&nbsp;".repeat(tonePinyin.length + 1);
+        retContent.push({
+          hanzi: tonePinyin,
+          isHanzi: false,
+          tonePinyin: space,
+          untonePinyin: space,
+          tone: 0,
+          arrowTone: arrowTones[0],
+          funikana: space,
+        });
+        j += tonePinyin.length;
+      }
     }
+    retContents.push(retContent);
   }
-  return retContent;
+  console.log(retContents);
+  return retContents;
 }
 
-export function ToHtmlContent(parsedContent, displayMode = 0) {
+export function ToHtmlContent(parsedContents, displayMode = 0) {
   // displayMode:
   // 0 标注片假名和箭头音调
   // 1 标注片假名
   // 2 标注有音调拼音
   // 3 标注无音调拼音
   let retContents = [];
-  for (let i = 0; i < parsedContent.length; i++) {
-    let parsedHanzi = parsedContent[i];
-    let content = parsedHanzi.hanzi;
-    switch (displayMode) {
-      case 0:
-        content =
-          "<ruby>&nbsp;" +
-          content +
-          "&nbsp;<rp>(</rp><rt>" +
-          parsedHanzi.funikana +
-          "</rt><rp>)</rp></ruby><rp>(</rp><rt>" +
-          parsedHanzi.arrowTone +
-          "</rt><rp>)</rp>";
-        break;
-      case 1:
-        content =
-          "&nbsp;" +
-          content +
-          "&nbsp;<rp>(</rp><rt>" +
-          parsedHanzi.funikana +
-          "</rt><rp>)</rp>";
-        break;
-      case 2:
-        content =
-          "&nbsp;" +
-          content +
-          "&nbsp;<rp>(</rp><rt>" +
-          parsedHanzi.tonePinyin +
-          "</rt><rp>)</rp>";
-        break;
-      case 3:
-        content =
-          "&nbsp;" +
-          content +
-          "&nbsp;<rp>(</rp><rt>" +
-          parsedHanzi.untonePinyin +
-          "</rt><rp>)</rp>";
-        break;
-      default:
-        console.log("mode error!");
-        break;
+  for (let t = 0; t < parsedContents.length; t++) {
+    let parsedContent = parsedContents[t];
+    let retContent = [];
+    for (let i = 0; i < parsedContent.length; i++) {
+      let parsedHanzi = parsedContent[i];
+      let content = parsedHanzi.hanzi;
+      switch (displayMode) {
+        case 0:
+          content =
+            "<ruby>&nbsp;" +
+            content +
+            "&nbsp;<rp>(</rp><rt>" +
+            parsedHanzi.funikana +
+            "</rt><rp>)</rp></ruby><rp>(</rp><rt>" +
+            parsedHanzi.arrowTone +
+            "</rt><rp>)</rp>";
+          break;
+        case 1:
+          content =
+            "&nbsp;" +
+            content +
+            "&nbsp;<rp>(</rp><rt>" +
+            parsedHanzi.funikana +
+            "</rt><rp>)</rp>";
+          break;
+        case 2:
+          content =
+            "&nbsp;" +
+            content +
+            "&nbsp;<rp>(</rp><rt>" +
+            parsedHanzi.tonePinyin +
+            "</rt><rp>)</rp>";
+          break;
+        case 3:
+          content =
+            "&nbsp;" +
+            content +
+            "&nbsp;<rp>(</rp><rt>" +
+            parsedHanzi.untonePinyin +
+            "</rt><rp>)</rp>";
+          break;
+        default:
+          console.log("mode error!");
+          break;
+      }
+      retContent.push(content);
     }
-    retContents.push(content);
+    retContents.push("<ruby>" + retContent.join("") + "</ruby>");
   }
-  return "<ruby>" + retContents.join("") + "</ruby>";
+  return retContents.join("<br>");
 }
