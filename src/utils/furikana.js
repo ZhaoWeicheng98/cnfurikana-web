@@ -26,7 +26,6 @@ export function ToParsedContent(texts) {
       ) || [];
   const arrowTones = ["&nbsp;", "→", "↗", "↘↗", "↘", "·"];
   // let hanziContent = getChinese(text);
-  console.log(texts);
   let retContents = [];
   for (let t = 0; t < texts.length; t++) {
     let text = texts[t];

@@ -98,7 +98,7 @@ import Speech from "speak-tts";
 export default {
   name: "App",
   components: {
-    FurikanaDisplay
+    FurikanaDisplay,
   },
   data() {
     return {
@@ -108,24 +108,24 @@ export default {
       langs: [
         {
           value: "zh_CN",
-          label: "简体中文"
+          label: "简体中文",
         },
         {
           value: "zh_TW",
-          label: "繁體中文"
+          label: "繁體中文",
         },
         {
           value: "en_US",
-          label: "English"
+          label: "English",
         },
         {
           value: "ja_JP",
-          label: "日本語"
-        }
+          label: "日本語",
+        },
       ],
       selectedMode: 0,
       selectedLang: this.$i18n.locale,
-      speech: null
+      speech: null,
     };
   },
   mounted() {
@@ -186,10 +186,16 @@ export default {
       localStorage.setItem("lang", this.selectedLang);
     },
     playAudio() {
-      this.speech.speak({ text: this.content }).then(() => {
+      let texts =
+        this.content
+          .split(/(\n|\r\n)/g)
+          .filter(
+            (v) => v !== "\n" && v !== "\r\n" && v !== "" && v !== "undefined"
+          ) || [];
+      this.speech.speak({ text: texts.join("\n") }).then(() => {
         console.log("读取成功");
       });
-    }
+    },
   },
   computed: {
     content: function() {
@@ -205,23 +211,23 @@ export default {
       return [
         {
           value: 0,
-          label: this.$t("modeSelector.choiceLabel0")
+          label: this.$t("modeSelector.choiceLabel0"),
         },
         {
           value: 1,
-          label: this.$t("modeSelector.choiceLabel1")
+          label: this.$t("modeSelector.choiceLabel1"),
         },
         {
           value: 2,
-          label: this.$t("modeSelector.choiceLabel2")
+          label: this.$t("modeSelector.choiceLabel2"),
         },
         {
           value: 3,
-          label: this.$t("modeSelector.choiceLabel3")
-        }
+          label: this.$t("modeSelector.choiceLabel3"),
+        },
       ];
-    }
-  }
+    },
+  },
 };
 </script>
 
