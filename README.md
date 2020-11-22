@@ -29,7 +29,7 @@ vue.js, element-ui, pinyin.js, cnchar.js, speak-tts.js
 
 ## Known Issues
 
-从上传文件中读取文本后需要刷新页面才能上传文件。
+日语翻译可能不准确。
 
 ## License
 
