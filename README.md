@@ -9,7 +9,9 @@ vue.js, element-ui, pinyin.js, cnchar.js, speak-tts.js
 ## Introduction
 
 [工具] 给中文标注日语假名和拼音 CNfurikana Web版本
+
 [Tools] Japanese Kana and Pinyin for Chinese, Web Version of CNfurikana
+
 [ツール] 中国語のための日本語カナとピンイン、CNfurikanaのWeb版 
 
 有什么功能特性？
@@ -44,15 +46,20 @@ Features?
 ## Pages
 
 在Github Pages和Gitee Pages上均有托管。
+
 It is hosted on both Github Pages and Gitee Pages.
+
 Github PagesとGitee Pagesの両方でホストされています。
+
 [Github CNFurikana](https://cnfurikana.github.io/)
 [Gitee CNFurikana](https://cnfurikana.gitee.io/)
 
 ## Known Issues
 
 日语翻译可能不准确。
+
 The Japanese translation may not be accurate.
+
 日本語訳は正確ではないかもしれません。
 
 ## License
