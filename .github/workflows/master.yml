@@ -36,12 +36,15 @@ jobs:
           npm ci
           npm run build
 
+      - name: Load deploy key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_DEPLOY_KEY }}
+
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v4
         with:
-          repo: cnfurikana/cnfurikana.github.io
+          repo: git@github.com:cnfurikana/cnfurikana.github.io.git
           target_branch: main
           build_dir: dist/
           jekyll: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAGES_TOKEN || secrets.GITHUB_TOKEN }}
