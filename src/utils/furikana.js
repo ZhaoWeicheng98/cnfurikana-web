@@ -1,6 +1,6 @@
-let pinyin = require("pinyin");
-let cnchar = require("cnchar");
-let funikanaData = require("./table.json");
+import pinyin from "pinyin";
+import cnchar from "cnchar";
+import funikanaData from "./table.json";
 
 // function getChinese(strValue) {
 //   if (strValue != null && strValue != "") {

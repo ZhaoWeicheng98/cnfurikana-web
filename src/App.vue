@@ -134,13 +134,13 @@ export default {
   beforeCreate() {
     this.$i18n.locale = localStorage.getItem("lang") || "zh_CN";
     // 读取文件
-    FileReader.prototype.reading = function({ encode }) {
+    FileReader.prototype.reading = function ({ encode }) {
       let bytes = new Uint8Array(this.result); //无符号整型数组
       let text = new TextDecoder(encode || "UTF-8").decode(bytes);
       return text;
     };
     /* 重写readAsBinaryString函数 */
-    FileReader.prototype.readAsBinaryString = function(f) {
+    FileReader.prototype.readAsBinaryString = function (f) {
       if (!this.onload)
         //如果this未重写onload函数，则创建一个公共处理方式
         this.onload = () => {
@@ -198,7 +198,7 @@ export default {
     },
   },
   computed: {
-    content: function() {
+    content: function () {
       if (this.fileContent != null && this.fileContent != "") {
         return this.fileContent;
       }
@@ -207,7 +207,7 @@ export default {
       }
       return "";
     },
-    displayModes: function() {
+    displayModes: function () {
       return [
         {
           value: 0,

@@ -11,13 +11,13 @@ export default {
   name: "FurikanaDisplay",
   props: {
     content: String,
-    displayMode: Number
+    displayMode: Number,
   },
   computed: {
-    displayContent: function() {
+    displayContent: function () {
       return ToHtmlContent(ToParsedContent(this.content), this.displayMode);
-    }
-  }
+    },
+  },
 };
 </script>
 
